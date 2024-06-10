@@ -10,12 +10,9 @@ function App() {
     setWs(socket);
 
     socket.onmessage = (event) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const message = JSON.parse(reader.result);
-        setMessages((prevMessages) => [...prevMessages, message]);
-      };
-      reader.readAsText(event.data);
+      const { data } = event;
+      const message = JSON.parse(data);
+      setMessages((prevMessages) => [...prevMessages, message]);
     };
 
     return () => socket.close();

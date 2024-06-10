@@ -40,3 +40,16 @@ wss.on("connection", (ws) => {
     console.log("Client disconnected");
   });
 });
+
+const setIntervalID = setInterval(() => {
+  const message = JSON.stringify({
+    message: "This is a broadcast message sent every minute"
+  });
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  });
+}, 1000);
+
+setTimeout(() => clearInterval(setIntervalID), 10000);
