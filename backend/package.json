@@ -1,0 +1,13 @@
+{
+  "name": "realtime-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run build-ui && node server.js",
+    "build-ui": "cd ../frontend && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^8.0.0"
+  }
+}
